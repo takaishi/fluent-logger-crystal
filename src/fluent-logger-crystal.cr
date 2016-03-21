@@ -5,6 +5,10 @@ require "json"
 require "msgpack"
 
 module Fluent::Logger
+  def self.post(tag, map)
+    @@logger.post(tag, map)
+  end
+
   class FluentLogger
     def initialize(tag_prefix, host = "localhost", port = 24224)
       @tag_prefix = tag_prefix
@@ -15,7 +19,10 @@ module Fluent::Logger
     def post(tag, map)
       begin
         time = Time.now
-        write ["#{@tag_prefix}.#{tag}", time.epoch, map]
+        if @tag_prefix
+          tag = "#{@tag_prefix}.#{tag}"
+        end
+        write [tag, time.epoch, map]
       rescue ex
         set_last_error(ex)
         false
@@ -34,6 +41,10 @@ module Fluent::Logger
 
     def last_error
       @last_error
+    end
+
+    def self.open(tag_prefix, host = "localhost", port = 24224)
+      @@logger = self.new(tag_prefix, host = "localhost", port = 24224)
     end
   end
 end
