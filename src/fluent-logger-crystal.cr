@@ -13,16 +13,27 @@ module Fluent::Logger
     end
 
     def post(tag, map)
-      time = Time.now
-      write [tag, time.epoch, map]
+      begin
+        time = Time.now
+        write ["#{@tag_prefix}.#{tag}", time.epoch, map]
+      rescue ex
+        set_last_error(ex)
+        false
+      end
     end
 
     def write(msg)
-      p msg
-      puts msg.to_json
-      p msg.to_json.to_msgpack
       conn = TCPSocket.new(@host, @port)
       conn.write(msg.to_msgpack)
+      true
+    end
+
+    def set_last_error(e)
+      @last_error = e
+    end
+
+    def last_error
+      @last_error
     end
   end
 end

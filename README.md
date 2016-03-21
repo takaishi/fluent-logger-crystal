@@ -16,9 +16,28 @@ dependencies:
 
 ## Usage
 
+### Simple
 
 ```crystal
-require "fluent-logger-crystal"
+require "fluent-logger"
+
+log = Fluent::Logger::FluentLogger.new(nil, host: "localhost", port: 24224)
+unless log.post("mqyapp.access", {agent: "foo"})
+  p log.last_error # You can get last error object via last_error method
+end
+
+# output: myapp.access {"agent":"foo"}
+```
+
+### Tag Prefix
+
+```crystal
+require "fluent-logger"
+
+log = Fluent::Logger::FluentLogger.new("myapp", host: "localhost", port: 24224)
+log.post("access", {agent: "foo"})
+
+# output: myapp.access {"agent":"foo"}
 ```
 
 
