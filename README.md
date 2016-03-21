@@ -1,6 +1,6 @@
 # fluent-logger-crystal
 
-TODO: Write a description here
+fluet-logger implementation for Crystal inspired by [fluent-logger-ruby](https://github.com/fluent/fluent-logger-ruby)
 
 ## Installation
 
@@ -19,7 +19,7 @@ dependencies:
 ### Simple
 
 ```crystal
-require "fluent-logger"
+require "fluent-logger-crystal"
 
 log = Fluent::Logger::FluentLogger.new(nil, host: "localhost", port: 24224)
 unless log.post("mqyapp.access", {agent: "foo"})
@@ -32,7 +32,7 @@ end
 ### Tag Prefix
 
 ```crystal
-require "fluent-logger"
+require "fluent-logger-crystal"
 
 log = Fluent::Logger::FluentLogger.new("myapp", host: "localhost", port: 24224)
 log.post("access", {agent: "foo"})
