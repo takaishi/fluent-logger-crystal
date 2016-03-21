@@ -1,0 +1,11 @@
+name: fluent-logger-crystal
+version: 0.1.0
+
+authors:
+  - Ryo Takaishi <ryo.takaishi.0@gmai.com>
+
+license: MIT
+
+dependencies:
+  msgpack:
+      github: benoist/msgpack-crystal
