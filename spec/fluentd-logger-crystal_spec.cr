@@ -7,8 +7,8 @@ include Spec2::GlobalDSL
 
 struct Time
   def self.now
-    # epoch time: 921942000
-    Time.new(1999, 3, 21)
+    # epoch time(UTC): 921974400
+    Time.new(1999, 3, 21, 0, 0, 0, 0, Time::Kind::Utc)
   end
 end
 
@@ -66,7 +66,7 @@ describe Fluent::Logger::FluentLogger do
 
     it "success" do
       expect(logger.post("myapp.access", {"foo": "bar"})).to be_truthy
-      expect(ch.receive).to eq(["myapp.access", 921942000, {"foo": "bar"}])
+      expect(ch.receive).to eq(["myapp.access", 921974400, {"foo": "bar"}])
     end
   end
 
@@ -75,7 +75,7 @@ describe Fluent::Logger::FluentLogger do
 
     it "success" do
       expect(logger.post("access", {"foo": "bar"})).to be_truthy
-      expect(ch.receive).to eq(["myapp.access", 921942000, {"foo": "bar"}])
+      expect(ch.receive).to eq(["myapp.access", 921974400, {"foo": "bar"}])
     end
   end
 end
