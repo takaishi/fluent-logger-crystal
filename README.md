@@ -1,5 +1,7 @@
 # fluent-logger-crystal
 
+[![Build Status](https://travis-ci.org/takaishi/fluent-logger-crystal.svg?branch=master)](https://travis-ci.org/takaishi/fluent-logger-crystal)
+
 fluet-logger implementation for Crystal inspired by [fluent-logger-ruby](https://github.com/fluent/fluent-logger-ruby)
 
 ## Installation
