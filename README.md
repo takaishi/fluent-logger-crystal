@@ -31,6 +31,17 @@ end
 # output: myapp.access {"agent":"foo"}
 ```
 
+### Singleton
+
+```crystal
+require "fluent-logger-crystal"
+
+Fluent::Logger::FluentLogger.open(nil, host: "localhost", port: 24224)
+Fluent::Logger.post("myapp.access", {agent: "foo"})
+
+# output: myapp.access {"agent":"foo"}
+```
+
 ### Tag Prefix
 
 ```crystal

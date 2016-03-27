@@ -70,6 +70,15 @@ describe Fluent::Logger::FluentLogger do
     end
   end
 
+  describe "singleton" do
+    before { Fluent::Logger::FluentLogger.open(nil, "localhost", 1234) }
+
+    it "success" do
+      expect(Fluent::Logger.post("myapp.access", {"foo": "bar"})).to be_truthy
+      expect(ch.receive).to eq(["myapp.access", 921974400, {"foo": "bar"}])
+    end
+  end
+
   describe "tag_prefix" do
     let(logger) { Fluent::Logger::FluentLogger.new("myapp", "localhost", 1234) }
 
