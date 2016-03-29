@@ -11,7 +11,7 @@ Add this to your application's `shard.yml`:
 
 ```yaml
 dependencies:
-  fluent-logger-crystal:
+  fluent-logger:
     github: takaishi/fluent-logger-crystal
 ```
 
@@ -21,7 +21,7 @@ dependencies:
 ### Simple
 
 ```crystal
-require "fluent-logger-crystal"
+require "fluent-logger"
 
 log = Fluent::Logger::FluentLogger.new(nil, host: "localhost", port: 24224)
 unless log.post("mqyapp.access", {agent: "foo"})
@@ -34,7 +34,7 @@ end
 ### Singleton
 
 ```crystal
-require "fluent-logger-crystal"
+require "fluent-logger"
 
 Fluent::Logger::FluentLogger.open(nil, host: "localhost", port: 24224)
 Fluent::Logger.post("myapp.access", {agent: "foo"})
@@ -45,7 +45,7 @@ Fluent::Logger.post("myapp.access", {agent: "foo"})
 ### Tag Prefix
 
 ```crystal
-require "fluent-logger-crystal"
+require "fluent-logger"
 
 log = Fluent::Logger::FluentLogger.new("myapp", host: "localhost", port: 24224)
 log.post("access", {agent: "foo"})
