@@ -24,7 +24,7 @@ dependencies:
 require "fluent-logger"
 
 log = Fluent::Logger::FluentLogger.new(nil, host: "localhost", port: 24224)
-unless log.post("mqyapp.access", {agent: "foo"})
+unless log.post("myapp.access", {agent: "foo"})
   p log.last_error # You can get last error object via last_error method
 end
 
