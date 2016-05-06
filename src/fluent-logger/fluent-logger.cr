@@ -5,8 +5,7 @@ require "msgpack"
 module Fluent
   class Logger
     class FluentLogger
-      def initialize(tag_prefix, host = "localhost", port = 24224)
-        @tag_prefix = tag_prefix
+      def initialize(@tag_prefix : String | Nil, host = "localhost", port = 24224)
         @host = host
         @port = port
       end
@@ -30,7 +29,7 @@ module Fluent
         true
       end
 
-      def set_last_error(e)
+      def set_last_error(e : Exception)
         @last_error = e
       end
 

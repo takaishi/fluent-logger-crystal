@@ -15,8 +15,7 @@ end
 alias TestType = Array(String | Float32 | Float64 | UInt16 | UInt32 | UInt64 | UInt8 | Int16 | Int32 | Int64 | Int8 | Hash(MessagePack::Type, MessagePack::Type))
 
 class MockServer
-  def initialize(ch)
-    @ch = ch
+  def initialize(@ch : Channel::Unbuffered(TestType))
     @server = TCPServer.new("localhost", 1234)
   end
 

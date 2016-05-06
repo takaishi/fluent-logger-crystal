@@ -6,9 +6,9 @@ shards:
 
   msgpack:
     github: benoist/msgpack-crystal
-    commit: 95d4fb2a49a6938761be5821b877ad1393dbfb3a
+    commit: ec8890ca56866b1189228b9712f2e5738e10d36d
 
   spec2:
     github: waterlink/spec2.cr
-    version: 0.7.1
+    version: 0.8.1
 
